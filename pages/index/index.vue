@@ -12,7 +12,7 @@
 					</scroll-view>
 					<nothing v-else></nothing>
 				</swiper-item>
-				
+
 			</swiper>
 		</view>
 
@@ -167,6 +167,11 @@
 			uni.navigateTo({
 				url: "../search/search"
 			})
+		},
+		onNavigationBarButtonTap(e) {
+			e.index === 1 ? uni.navigateTo({
+				url: "../release/release"
+			}) : ""
 		},
 		methods: {
 			tabChange(e) {
