@@ -5,7 +5,7 @@
 				<image :src="item.userPic" lazy-load></image>
 				<text>{{item.username}}</text>
 			</view>
-			<view class="top-right" v-show="!item.isAttention" @tap="handleAttention">
+			<view class="top-right" v-show="!isAttention" @tap="handleAttention">
 				<view class="icon iconfont icon-zengjia">关注</view>
 			</view>
 		</view>
@@ -17,8 +17,8 @@
 		</view>
 		<view class="item-bottom u-f-ac u-f-jsb">
 			<view class="bottom-left u-f-ac">
-				<view :class="{active: item.evaluateNum.index === 1}" @click="handleLike(0)"><text class="icon iconfont icon-icon_xiaolian-mian"></text>{{item.evaluateNum.likeNum}}</view>
-				<view :class="{active: item.evaluateNum.index === 2}" @click="handleLike(1)"><text class="icon iconfont icon-kulian"></text>{{item.evaluateNum.dislikeNum}}</view>
+				<view :class="{active: item.evaluateNum.index === 1}" @click="handleLike(0)"><text class="icon iconfont icon-icon_xiaolian-mian"></text>{{evaluateNum.likeNum}}</view>
+				<view :class="{active: item.evaluateNum.index === 2}" @click="handleLike(1)"><text class="icon iconfont icon-kulian"></text>{{evaluateNum.dislikeNum}}</view>
 			</view>
 			<view class="bottom-right u-f-ac">
 				<view><text class="icon iconfont icon-xiaoxi2"></text>{{item.commentNum}}</view>
@@ -55,7 +55,10 @@
 			}
 		},
 		data() {
-			return {};
+			return {
+				evaluateNum: this.item.evaluateNum,
+				isAttention: this.item.isAttention
+			};
 		},
 		methods: {
 			handleAttention() {
@@ -67,15 +70,15 @@
 			handleLike(type) {
 				// type: 0 表示喜欢，1表示不喜欢
 				if (type === 0) {
-					if (this.item.evaluateNum.index === 1) return
-					this.item.evaluateNum.likeNum++
-					this.item.evaluateNum.index === 2 ? this.item.evaluateNum.dislikeNum-- : ""
-					this.item.evaluateNum.index = 1
+					if (this.evaluateNum.index === 1) return
+					this.evaluateNum.likeNum++
+					this.evaluateNum.index === 2 ? this.evaluateNum.dislikeNum-- : ""
+					this.evaluateNum.index = 1
 				} else {
-					if (this.item.evaluateNum.index === 2) return
-					this.item.evaluateNum.dislikeNum++
-					this.item.evaluateNum.index === 1 ? this.item.evaluateNum.likeNum-- : ""
-					this.item.evaluateNum.index = 2
+					if (this.evaluateNum.index === 2) return
+					this.evaluateNum.dislikeNum++
+					this.evaluateNum.index === 1 ? this.evaluateNum.likeNum-- : ""
+					this.evaluateNum.index = 2
 				}
 
 			}
