@@ -1,60 +1,64 @@
 <template>
 	<view>
-		<uni-nav-bar :statusBar="true" @clickRight="openAdd">
-			<!-- 左边 -->
-			<block slot="left">
-				<view class="top-icon">
-					<view class="icon iconfont icon-qiandao"></view>
-				</view>
-			</block>
-			<!-- 中间 -->
-			<view class="nav-center u-f-ajc">
-				<view class="u-f-ajc" v-for="(item,index) in tabBars" :key="index" :class="{active: tabIndex === index}" @tap="tabChange(index)">
-					{{item.name}}
-					<view v-show="tabIndex === index" class="tab-line"></view>
-				</view>
-			</view>
-			<!-- 右边 -->
-			<block slot="right">
-				<view class="icon iconfont icon-bianji"></view>
-			</block>
-		</uni-nav-bar>
+		<news-nav-bar :tabBars="tabBars" :tabIndex="tabIndex" @tab-change="tabChange"></news-nav-bar>
 		<!-- 列表 -->
-		<view class="common-list u-f">
-			<view class="common-list-left">
-				<image src="../../static/image/common/nothing.png" mode="widthFix"></image>
-			</view>
-			<view class="common-list-right">
-				<view class="common-head u-f-ac u-f-jsb">
-					<view class="u-f-ac">昵称<view class="icon iconfont  icon-nan">25</view>
-					</view>
-					<view class="icon iconfont icon-zengjia">关注</view>
-				</view>
-				<view class="common-title">
-					我是简介
-				</view>
-				<view class="common-image">
-					<image src="../../static/image/common/annouce.png" mode="widthFix" lazy-load></image>
-				</view>
-				<view class="u-f-ac u-f-jsb common-bottom">
-					<view>深圳 龙岗</view>
-					<view class="u-f-ac icon-list">
-						<view class="icon iconfont icon-zhuanfa">10</view>
-						<view class="icon iconfont icon-pinglun">20</view>
-						<view class="icon iconfont icon-dianzan">30</view>
-					</view>
-				</view>
-			</view>
-
+		<view class="uni-tab-bar">
+			<swiper class="swiper-box" :style="{height: swiperHeight + 'px'}" :current="tabIndex" @change="swiperChange">
+				<!-- 关注 -->
+				<swiper-item>
+					<scroll-view scroll-y class="list" @scrolltolower="loadMore()" v-if="attentionList.list.length > 0">
+						<common-list v-for="(item, index) in attentionList.list" :key="index" :item="item" :index="index"></common-list>
+						<!-- 上拉加载更多 -->
+						<load-more :loadText="attentionList.loadText"></load-more>
+					</scroll-view>
+					<nothing v-else></nothing>
+				</swiper-item>
+				<!-- 话题 -->
+				<swiper-item>
+					<scroll-view scroll-y class="list">
+						<!-- 搜索框 -->
+						<view class="search-input">
+							<input class="uni-input" placeholder="搜索内容" placeholder-class="icon iconfont icon-sousuo topic-search" />
+						</view>
+						<!-- 轮播图 -->
+						<swiper class="top-swiper" :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000">
+							<swiper-item v-for="(item, index) in topicList.swiper" :key="index">
+								<image :src="item.src" mode="widthFix"></image>
+							</swiper-item>
+						</swiper>
+						<!-- 热门分类 -->
+						<topic-nav :nav="topicList.nav"></topic-nav>
+						<!-- 最近更新 -->
+						<view class="topic-list">
+							<view class="list-title">最近更新</view>
+							<topic-list v-for="(item, index) in topicList.list" :key="index" :item="item" :index="index"></topic-list>
+						</view>
+					</scroll-view>
+				</swiper-item>
+			</swiper>
 		</view>
 	</view>
 </template>
 
 <script>
-	import uniNavBar from "@/components/uni-nav-bar/uni-nav-bar.vue"
+	import newsNavBar from "@/components/news/news-nav-bar.vue"
+	import commonList from "@/components/common/common-list.vue"
+	import loadMore from "@/components/common/loadMore.vue"
+	import nothing from "@/components/common/nothing.vue"
+	import topicNav from "@/components/news/topic-nav.vue"
+	import topicList from "@/components/news/topic-list.vue"
 	export default {
+		components: {
+			commonList,
+			newsNavBar,
+			nothing,
+			loadMore,
+			topicNav,
+			topicList
+		},
 		data() {
 			return {
+				swiperHeight: 0,
 				tabIndex: 0,
 				tabBars: [{
 					name: "关注",
@@ -62,123 +66,196 @@
 				}, {
 					name: "话题",
 					id: "topic"
-				}]
+				}],
+				attentionList: {
+					list: [
+						// 图文
+						{
+							userPic: "https://lh3.googleusercontent.com/proxy/BMExtcDP8VbSZMqKFWn1FpP4g0wSr3tkssg48LMaWc8Tgd2dW9bfLtAyR37nMs-ViCuTipfSVn5nrEtzkiZfF8VzR7BsWhFZ-k6sm1n5h76LlylB",
+							username: "王宇",
+							sex: 0, // 0为男，1为女
+							age: 20,
+							isAttention: false,
+							title: "哈哈哈哈哈哈",
+							titlePic: "",
+							video: false,
+							share: false,
+							address: "深圳 龙岗",
+							shareNum: 20,
+							commentNum: 30,
+							likeNum: 20,
+						},
+						// 视频
+						{
+							userPic: "https://lh3.googleusercontent.com/proxy/BMExtcDP8VbSZMqKFWn1FpP4g0wSr3tkssg48LMaWc8Tgd2dW9bfLtAyR37nMs-ViCuTipfSVn5nrEtzkiZfF8VzR7BsWhFZ-k6sm1n5h76LlylB",
+							username: "Mary",
+							sex: 1, // 0为男，1为女
+							age: 20,
+							isAttention: false,
+							title: "哈哈哈哈哈哈",
+							titlePic: "https://img.iplaysoft.com/wp-content/uploads/2019/free-images/free_stock_photo.jpg",
+							video: {
+								playNum: "20w",
+								long: "2:31"
+							},
+							share: false,
+							address: "深圳 龙岗",
+							shareNum: 20,
+							commentNum: 30,
+							likeNum: 20,
+						},
+						{
+							userPic: "https://lh3.googleusercontent.com/proxy/BMExtcDP8VbSZMqKFWn1FpP4g0wSr3tkssg48LMaWc8Tgd2dW9bfLtAyR37nMs-ViCuTipfSVn5nrEtzkiZfF8VzR7BsWhFZ-k6sm1n5h76LlylB",
+							username: "王宇",
+							sex: 0, // 0为男，1为女
+							age: 20,
+							isAttention: false,
+							title: "哈哈哈哈哈哈",
+							titlePic: "",
+							video: false,
+							share: {
+								title: "哈哈哈哈哈哈哈哈",
+								titlePic: "https://img.iplaysoft.com/wp-content/uploads/2019/free-images/free_stock_photo.jpg"
+							},
+							address: "深圳 龙岗",
+							shareNum: 20,
+							commentNum: 30,
+							likeNum: 20,
+						}
+					],
+					loadText: "上拉加载更多"
+				},
+				topicList: {
+					swiper: [{
+							src: "https://img.iplaysoft.com/wp-content/uploads/2019/free-images/free_stock_photo.jpg"
+						},
+						{
+							src: "https://lh3.googleusercontent.com/proxy/BMExtcDP8VbSZMqKFWn1FpP4g0wSr3tkssg48LMaWc8Tgd2dW9bfLtAyR37nMs-ViCuTipfSVn5nrEtzkiZfF8VzR7BsWhFZ-k6sm1n5h76LlylB"
+						},
+						{
+							src: "https://img.iplaysoft.com/wp-content/uploads/2019/free-images/free_stock_photo.jpg"
+						}
+					],
+					nav: [{
+							name: "最新"
+						},
+						{
+							name: "游戏"
+						},
+						{
+							name: "打卡"
+						},
+						{
+							name: "情感"
+						},
+						{
+							name: "故事"
+						},
+						{
+							name: "喜爱"
+						}
+					],
+					list: [{
+							titlePic: "https://lh3.googleusercontent.com/proxy/BMExtcDP8VbSZMqKFWn1FpP4g0wSr3tkssg48LMaWc8Tgd2dW9bfLtAyR37nMs-ViCuTipfSVn5nrEtzkiZfF8VzR7BsWhFZ-k6sm1n5h76LlylB",
+							title: "话题名称",
+							desc: "我是话题描述",
+							totalNum: 20,
+							todayNum: 5
+						},
+						{
+							titlePic: "https://lh3.googleusercontent.com/proxy/BMExtcDP8VbSZMqKFWn1FpP4g0wSr3tkssg48LMaWc8Tgd2dW9bfLtAyR37nMs-ViCuTipfSVn5nrEtzkiZfF8VzR7BsWhFZ-k6sm1n5h76LlylB",
+							title: "话题名称",
+							desc: "我是话题描述",
+							totalNum: 20,
+							todayNum: 5
+						},
+						{
+							titlePic: "https://lh3.googleusercontent.com/proxy/BMExtcDP8VbSZMqKFWn1FpP4g0wSr3tkssg48LMaWc8Tgd2dW9bfLtAyR37nMs-ViCuTipfSVn5nrEtzkiZfF8VzR7BsWhFZ-k6sm1n5h76LlylB",
+							title: "话题名称",
+							desc: "我是话题描述",
+							totalNum: 20,
+							todayNum: 5
+						}
+					]
+				}
 			}
 		},
+		onLoad() {
+			uni.getSystemInfo({
+				success: res => {
+					this.swiperHeight = res.windowHeight - uni.upx2px(100)
+				}
+			})
+		},
 		methods: {
+			// 点击切换
 			tabChange(index) {
 				this.tabIndex = index
 			},
-			openAdd() {
-				uni.navigateTo({
-					url: "../release/release"
-				})
+			// 滑动切换
+			swiperChange(e) {
+				this.tabIndex = e.detail.current
+			},
+			loadMore() {
+				// 触底事件，上拉加载
+				if (this.attentionList.loadText !== "上拉加载更多") return
+				this.attentionList.loadText = "加载中"
+				setTimeout(() => {
+					const data = {
+						userPic: "https://lh3.googleusercontent.com/proxy/BMExtcDP8VbSZMqKFWn1FpP4g0wSr3tkssg48LMaWc8Tgd2dW9bfLtAyR37nMs-ViCuTipfSVn5nrEtzkiZfF8VzR7BsWhFZ-k6sm1n5h76LlylB",
+						username: "王宇",
+						sex: 0, // 0为男，1为女
+						age: 20,
+						isAttention: false,
+						title: "哈哈哈哈哈哈",
+						titlePic: "",
+						video: false,
+						share: {
+							title: "哈哈哈哈哈哈哈哈",
+							titlePic: "https://img.iplaysoft.com/wp-content/uploads/2019/free-images/free_stock_photo.jpg"
+						},
+						address: "深圳 龙岗",
+						shareNum: 20,
+						commentNum: 30,
+						likeNum: 20,
+					}
+					this.attentionList.list.push(data)
+					this.attentionList.loadText = "上拉加载更多"
+				}, 2000)
+				// this.dataList[index].loadText = "没有更多数据了"
 			}
 		}
 	}
 </script>
 
 <style lang="less" scoped>
-	.top-icon .icon {
-		font-size: 45rpx;
-	}
-
-	.icon-qiandao {
-		margin-left: 12rpx;
-		color: #FF9619;
-	}
-
-	.icon-bianji {
-		margin-left: 30rpx;
-	}
-
-	.nav-center {
-		width: 100%;
-		margin-left: -20rpx;
-		position: relative;
-
-		view {
-			font-size: 32rpx;
-			padding: 0 15rpx;
-			font-weight: bold;
-			color: #969696;
-		}
-
-		.active {
-			color: #333333;
-		}
-	}
-
-	.tab-line {
-		position: absolute;
-		border-bottom: 6rpx solid #fede33;
-		width: 45rpx;
-		margin: auto;
-		border-top: 6rpx solid #fede33;
-		border-radius: 20rpx;
-		bottom: -5rpx;
-	}
-
-	.common-list {
+	.search-input {
 		padding: 20rpx;
-	}
 
-	.common-list-left {
-		flex-shrink: 0;
-
-		image {
-			width: 90rpx;
-			height: 90rpx;
-			border-radius: 100%;
+		input {
+			background: #f4f4f4;
+			border-radius: 10rpx;
 		}
 	}
 
-	.common-image {
+	.topic-search {
+		display: flex;
+		justify-content: center;
+		font-size: 28rpx;
+	}
+
+	.top-swiper {
+		padding: 0 20rpx 20rpx 20rpx;
+
 		image {
 			width: 100%;
 			border-radius: 10rpx;
 		}
 	}
 
-	.common-list-right {
-		flex: 1;
-		margin-left: 15rpx;
-		border-bottom: 1rpx solid #EEEEEE;
-		padding-bottom: 10rpx;
-		view {
-			&:nth-child(1) {
-				color: #999999;
-				font-size: 32rpx;
-			}
-
-			.icon-nan {
-				background-color: #007AFF;
-				color: #FFFFFF;
-				font-size: 23rpx;
-				padding: 5rpx 10rpx;
-				margin-left: 15rpx;
-				border-radius: 20rpx;
-				line-height: 22rpx;
-			}
-		}
-
-		.common-head .icon-zengjia {
-			background-color: #EEEEEE;
-			color: #333333;
-			font-size: 26rpx;
-			padding: 0 10rpx;
-		}
-	}
-	.common-title {
+	.list-title {
+		color: #333333;
+		padding: 10rpx 20rpx 0;
 		font-size: 32rpx;
-		padding: 12 rpx 0;
-	}
-	.common-bottom {
-		color: #AAAAAA;
-		.icon-list {
-			fo
-			padding-left: 5rpx;
-			margin-left: 10rpx;
-		}
 	}
 </style>

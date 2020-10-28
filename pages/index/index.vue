@@ -12,10 +12,8 @@
 					</scroll-view>
 					<nothing v-else></nothing>
 				</swiper-item>
-
 			</swiper>
 		</view>
-
 	</view>
 </template>
 
