@@ -71,7 +71,7 @@
 					list: [
 						// 图文
 						{
-							userPic: "https://lh3.googleusercontent.com/proxy/BMExtcDP8VbSZMqKFWn1FpP4g0wSr3tkssg48LMaWc8Tgd2dW9bfLtAyR37nMs-ViCuTipfSVn5nrEtzkiZfF8VzR7BsWhFZ-k6sm1n5h76LlylB",
+							userPic: "http://m.imeitou.com/uploads/allimg/190221/3-1Z221113343.jpg",
 							username: "王宇",
 							sex: 0, // 0为男，1为女
 							age: 20,
@@ -87,7 +87,7 @@
 						},
 						// 视频
 						{
-							userPic: "https://lh3.googleusercontent.com/proxy/BMExtcDP8VbSZMqKFWn1FpP4g0wSr3tkssg48LMaWc8Tgd2dW9bfLtAyR37nMs-ViCuTipfSVn5nrEtzkiZfF8VzR7BsWhFZ-k6sm1n5h76LlylB",
+							userPic: "http://m.imeitou.com/uploads/allimg/190221/3-1Z221113343.jpg",
 							username: "Mary",
 							sex: 1, // 0为男，1为女
 							age: 20,
@@ -105,7 +105,7 @@
 							likeNum: 20,
 						},
 						{
-							userPic: "https://lh3.googleusercontent.com/proxy/BMExtcDP8VbSZMqKFWn1FpP4g0wSr3tkssg48LMaWc8Tgd2dW9bfLtAyR37nMs-ViCuTipfSVn5nrEtzkiZfF8VzR7BsWhFZ-k6sm1n5h76LlylB",
+							userPic: "http://m.imeitou.com/uploads/allimg/190221/3-1Z221113343.jpg",
 							username: "王宇",
 							sex: 0, // 0为男，1为女
 							age: 20,
@@ -130,7 +130,7 @@
 							src: "https://img.iplaysoft.com/wp-content/uploads/2019/free-images/free_stock_photo.jpg"
 						},
 						{
-							src: "https://lh3.googleusercontent.com/proxy/BMExtcDP8VbSZMqKFWn1FpP4g0wSr3tkssg48LMaWc8Tgd2dW9bfLtAyR37nMs-ViCuTipfSVn5nrEtzkiZfF8VzR7BsWhFZ-k6sm1n5h76LlylB"
+							src: "http://m.imeitou.com/uploads/allimg/190221/3-1Z221113343.jpg"
 						},
 						{
 							src: "https://img.iplaysoft.com/wp-content/uploads/2019/free-images/free_stock_photo.jpg"
@@ -156,21 +156,21 @@
 						}
 					],
 					list: [{
-							titlePic: "https://lh3.googleusercontent.com/proxy/BMExtcDP8VbSZMqKFWn1FpP4g0wSr3tkssg48LMaWc8Tgd2dW9bfLtAyR37nMs-ViCuTipfSVn5nrEtzkiZfF8VzR7BsWhFZ-k6sm1n5h76LlylB",
+							titlePic: "http://m.imeitou.com/uploads/allimg/190221/3-1Z221113343.jpg",
 							title: "话题名称",
 							desc: "我是话题描述",
 							totalNum: 20,
 							todayNum: 5
 						},
 						{
-							titlePic: "https://lh3.googleusercontent.com/proxy/BMExtcDP8VbSZMqKFWn1FpP4g0wSr3tkssg48LMaWc8Tgd2dW9bfLtAyR37nMs-ViCuTipfSVn5nrEtzkiZfF8VzR7BsWhFZ-k6sm1n5h76LlylB",
+							titlePic: "http://m.imeitou.com/uploads/allimg/190221/3-1Z221113343.jpg",
 							title: "话题名称",
 							desc: "我是话题描述",
 							totalNum: 20,
 							todayNum: 5
 						},
 						{
-							titlePic: "https://lh3.googleusercontent.com/proxy/BMExtcDP8VbSZMqKFWn1FpP4g0wSr3tkssg48LMaWc8Tgd2dW9bfLtAyR37nMs-ViCuTipfSVn5nrEtzkiZfF8VzR7BsWhFZ-k6sm1n5h76LlylB",
+							titlePic: "http://m.imeitou.com/uploads/allimg/190221/3-1Z221113343.jpg",
 							title: "话题名称",
 							desc: "我是话题描述",
 							totalNum: 20,
@@ -202,7 +202,7 @@
 				this.attentionList.loadText = "加载中"
 				setTimeout(() => {
 					const data = {
-						userPic: "https://lh3.googleusercontent.com/proxy/BMExtcDP8VbSZMqKFWn1FpP4g0wSr3tkssg48LMaWc8Tgd2dW9bfLtAyR37nMs-ViCuTipfSVn5nrEtzkiZfF8VzR7BsWhFZ-k6sm1n5h76LlylB",
+						userPic: "http://m.imeitou.com/uploads/allimg/190221/3-1Z221113343.jpg",
 						username: "王宇",
 						sex: 0, // 0为男，1为女
 						age: 20,

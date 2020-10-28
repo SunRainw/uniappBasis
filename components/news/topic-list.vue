@@ -13,7 +13,7 @@
 	export default {
 		props: {
 			item: Object,
-			index: Array
+			index: Number
 		},
 		methods: {
 			toTopicDetail(){

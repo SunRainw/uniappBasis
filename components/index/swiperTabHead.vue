@@ -21,12 +21,16 @@
 			tabBars: Array,
 			tabIndex: Number,
 			scrollStyle: {
-				type: String,
-				default: ""
+				type: Object,
+				default() {
+					return {}
+				}
 			},
 			scrollItemStyle: {
-				type: String,
-				default: ""
+				type: Object,
+				default() {
+					return {}
+				}
 			}
 		},
 		data() {
