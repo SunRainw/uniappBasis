@@ -1,5 +1,5 @@
 <template>
-	<view class="list-content u-f" @tap="toTopicDetail">
+	<view class="list-content u-f  animate__animated animate__fadeInLeft animate__fast" @tap="toTopicDetail">
 		<image :src="item.titlePic" mode="widthFix"></image>
 		<view class="topic-item-info">
 			<view class="info-title">#{{item.title}}</view>

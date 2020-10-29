@@ -7,7 +7,7 @@
 			<view class="common-head u-f-ac u-f-jsb">
 				<view class="u-f-ac">
 					<view class="username">{{item.username}}</view>
-					<view class="icon iconfont icon-sex" :class="item.sex === 0? 'icon-nan': 'icon-nv'">{{item.age}}</view>
+					<tag-sex-age :item="{sex: item.sex, age: item.age}"></tag-sex-age>
 				</view>
 				<view v-show="!isAttention" class="icon iconfont icon-zengjia" @tap="handleAttention">关注</view>
 			</view>
@@ -37,7 +37,11 @@
 </template>
 
 <script>
+	import tagSexAge from "@/components/common/tag-sex-age.vue"
 	export default {
+		components: {
+			tagSexAge
+		},
 		props: {
 			item: Object,
 			index: Number
@@ -51,7 +55,7 @@
 			handleAttention() {
 				this.isAttention = true
 				uni.showToast({
-					title:"关注成功"
+					title: "关注成功"
 				})
 			}
 		}
@@ -109,16 +113,10 @@
 			.username {
 				color: #999999;
 				font-size: 32rpx;
+				margin-right: 15rpx;
 			}
 
-			.icon-sex {
-				color: #FFFFFF;
-				font-size: 22rpx;
-				padding: 5rpx 10rpx;
-				margin-left: 15rpx;
-				border-radius: 20rpx;
-				line-height: 22rpx;
-			}
+
 		}
 
 		.common-head .icon-zengjia {
@@ -129,13 +127,7 @@
 		}
 	}
 
-	.icon-nan {
-		background-color: #007AFF;
-	}
 
-	.icon-nv {
-		background-color: pink;
-	}
 
 	.common-title {
 		font-size: 32rpx;
@@ -146,6 +138,7 @@
 		color: #AAAAAA;
 		margin-top: 10rpx;
 		font-size: 28rpx;
+
 		.icon-list .icon {
 			font-size: 28rpx;
 			padding-left: 5rpx;

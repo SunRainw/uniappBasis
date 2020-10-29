@@ -6,9 +6,9 @@
 				v-for="(tab, index) in tabBars" :key="tab.id"
 				:class="{active: tabIndex === index}"
 				@tap="tabTap(index)"
-				:style="scrollItemStyle"
+				:style="scrollItemStyle" 
 			>
-				{{tab.name}}
+				{{tab.name}} {{tab.num ? tab.num : ""}}
 				<view class="swiper-tab-line"></view>
 			</view>
 		</scroll-view>
@@ -22,15 +22,11 @@
 			tabIndex: Number,
 			scrollStyle: {
 				type: Object,
-				default() {
-					return {}
-				}
+				default: ""
 			},
 			scrollItemStyle: {
 				type: Object,
-				default() {
-					return {}
-				}
+				default: ""
 			}
 		},
 		data() {

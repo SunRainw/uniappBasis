@@ -53,8 +53,29 @@
 	}, {
 		"path": "pages/paper/paper",
 		"style": {
-			"navigationBarTitleText": "",
-			"enablePullDownRefresh": false
+			"navigationBarTitleText": "小字条",
+			"enablePullDownRefresh": true,
+			"app-plus": {
+				"titleNView": {
+					"buttons": [{
+							"color": "#000000",
+							"colorPressed": "#BBBBBB",
+							"float": "left",
+							"fontSize": "22px",
+							"fontSrc": "/static/font/icon.ttf",
+							"text": "\ue845"
+						},
+						{
+							"color": "#000000",
+							"colorPressed": "#BBBBBB",
+							"float": "float",
+							"fontSize": "22px",
+							"fontSrc": "/static/font/icon.ttf",
+							"text": "\ue640"
+						}
+					]
+				}
+			}
 		}
 
 	}, {
@@ -82,7 +103,6 @@
 				}
 			}
 		}
-
 	}, {
 		"path": "pages/release/release",
 		"style": {
@@ -102,7 +122,7 @@
 		}
 
 	}, {
-		"path": "pages/topic-detail/topic-detail",		
+		"path": "pages/topic-detail/topic-detail",
 		"style": {
 			"enablePullDownRefresh": true,
 			"app-plus": {
@@ -116,7 +136,56 @@
 			}
 		}
 
-	}],
+	}, {
+		"path": "pages/user-list/user-list",
+		"style": {
+			"app-plus": {
+				"animationType": "slide-in-left", // 进场动画，仅App有效
+				"scrollIndicator": "none", // 隐藏滚动条
+				"titleNView": {
+					"autoBackButton": false, // 是否显示左侧返回按钮
+					"searchInput": {
+						"align": "left",
+						"backgroundColor": "#F7F7F7",
+						"borderRadius": "4px",
+						"placeholder": "搜索糗事",
+						"placeholderColor": "#CCCCCC",
+						"disabled": false
+					},
+					"buttons": [{
+						"color": "#000000",
+						"colorPressed": "#BBBBBB",
+						"float": "float",
+						"fontSize": "14px",
+						"text": "取消"
+					}]
+				}
+			}
+		}
+
+	}    ,{
+            "path" : "pages/user-chat/user-chat",
+            "style" :                                                                                    
+            {
+				"navigationBarTitleText": "聊天页",
+				"app-plus": {
+					"titleNView": {
+						"buttons": [
+							{
+								"color": "#000000",
+								"colorPressed": "#BBBBBB",
+								"float": "float",
+								"fontSize": "22px",
+								"fontSrc": "/static/font/icon.ttf",
+								"text": "\ue60e"
+							}
+						]
+					}
+				}
+            }
+            
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "糗事",
