@@ -22,11 +22,15 @@
 			tabIndex: Number,
 			scrollStyle: {
 				type: Object,
-				default: ""
+				default() {
+					return {}
+				}
 			},
 			scrollItemStyle: {
 				type: Object,
-				default: ""
+				default() {
+					return {}
+				}
 			}
 		},
 		data() {

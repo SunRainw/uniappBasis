@@ -1,6 +1,6 @@
 <template>
 	<view class="user-chat-bottom u-f-ajc">
-		<input type="text" placeholder="文明发言" v-model="value" />
+		<input type="text" v-model="value" />
 		<view class="icon iconfont icon-fabu" @tap="submit"></view>
 	</view>
 </template>
@@ -8,11 +8,15 @@
 <script>
 	export default {
 		data() {
-			value: ""
+			return {
+				value: ""
+			}
+			
 		},
 		methods:{
 			submit() {
 				this.$emit("submit", this.value)
+				this.value = ""
 			}
 		}
 	}
