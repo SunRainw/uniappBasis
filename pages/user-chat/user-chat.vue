@@ -1,7 +1,7 @@
 <template>
 	<view class="user-chat">
 		<!-- 聊天列表 -->
-		<scroll-view id="scroll-view" scroll-y :scroll-top="scrollTop" :scroll-with-animation="true" :style="{ height: style.contentH +'px' }">
+		<scroll-view id="scroll-view" scroll-y :scroll-top="scrollTop" :scroll-with-animation="true" :style="{ height: style.contentH +'px' }" @scroll="scroll">
 			<block v-for="(item, index) in list" :key="index">
 				<user-chat-list :item="item" :index="index"></user-chat-list>
 			</block>
@@ -63,23 +63,28 @@
 			this.pageToBottom()
 		},
 		methods: {
+			scroll(e) {
+				console.info(e)
+			},
 			pageToBottom() {
 				let ele = uni.createSelectorQuery()
 				ele.select("#scroll-view").boundingClientRect()
 				ele.selectAll(".user-chat-item").boundingClientRect()
 				ele.exec(res => {
+					let height = 0
 					res[1].forEach(item => {
 						this.style.itemH += item.height
 					})
 					if(this.style.itemH > this.style.contentH) {
-						this.scrollTop = this.style.itemH
+						height += this.style.itemH - this.style.contentH
 					}
+					this.scrollTop = height
 				})
 			},
 			initData() {
 				try {
 					const res = uni.getSystemInfoSync()
-					this.style.contentH = res - uni.upx2px(120)
+					this.style.contentH = res.windowHeight - uni.upx2px(120)
 				} catch(e) {}
 			},
 			submit(value) {
@@ -94,7 +99,9 @@
 					showTime: getEachTime(date, this.list[this.list.length - 1].time)
 				}
 				this.list.push(data)
-				this.pageToBottom()
+				this.$nextTick(() => {
+					this.pageToBottom()
+				})
 			}
 		}
 	}
