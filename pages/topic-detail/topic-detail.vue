@@ -83,7 +83,7 @@
 								address: "深圳 龙岗",
 								shareNum: 20,
 								commentNum: 30,
-								likeNum: 20,
+								likeNum: 20
 							},
 							{
 								userPic: "http://m.imeitou.com/uploads/allimg/190221/3-1Z221113343.jpg",

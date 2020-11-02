@@ -9,7 +9,7 @@
 				<view class="icon iconfont icon-zengjia">关注</view>
 			</view>
 		</view>
-		<view class="item-title">{{item.title}}</view>
+		<view class="item-title" @tap="toDetail">{{item.title}}</view>
 		<view class="item-image u-f-ajc">
 			<view class="icon iconfont icon-bofang" v-if="item.type==='img'"></view>
 			<image src="//pic.qiushibaike.com/article/image/S24ZYNEQUGLG0ALH.jpg?imageView2/1/w/150/h/112"></image>
@@ -81,6 +81,11 @@
 					this.evaluateNum.index = 2
 				}
 
+			},
+			toDetail() {
+				uni.navigateTo({
+					url: "../../pages/detail/detail?detail="+JSON.stringify(this.item)
+				})
 			}
 		}
 	}

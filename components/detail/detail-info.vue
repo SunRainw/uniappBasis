@@ -11,11 +11,14 @@
 				</view>
 				<view v-show="!isAttention" class="icon iconfont icon-zengjia" @tap="handleAttention">关注</view>
 			</view>
+			<view class="common-time">{{item.time}}</view>
 			<view class="common-title">
 				{{item.title}}
 			</view>
-			<view class="common-image u-f-ajc">
-				<image v-if="item.titlePic" :src="item.titlePic" mode="widthFix" lazy-load></image>
+			<view class="common-image u-f-ajc image-list">
+				<block v-for="(pic, index) in item.morePic" :key="index">
+					<image :src="pic" mode="widthFix" lazy-load @tap="priviewImage(index)"></image>
+				</block>
 				<view class="icon iconfont icon-bofang" v-if="item.video"></view>
 				<view class="common-list-playinfo" v-if="item.video">播放量: {{item.video.playNum}} 时长: {{item.video.long}}</view>
 			</view>
@@ -43,8 +46,7 @@
 			tagSexAge
 		},
 		props: {
-			item: Object,
-			index: Number
+			item: Object
 		},
 		data() {
 			return {
@@ -57,6 +59,12 @@
 				uni.showToast({
 					title: "关注成功"
 				})
+			},
+			priviewImage(index) {
+				uni.previewImage({
+					current: index,
+					urls: this.item.morePic
+				})
 			}
 		}
 	}
@@ -64,4 +72,21 @@
 
 <style lang="less" scoped>
 	@import "@/common/list.less";
+	.common-list {
+		border-bottom: 1rpx solid #EEEEEE;
+		.common-list-right{
+			border-bottom: 0;
+		}
+	}
+	.common-time {
+		padding: 5rpx;
+		color: #CCCCCC;
+		font-size: 28rpx;
+	}
+	.image-list {
+		flex-direction: column;
+		image {
+			margin-bottom: 15rpx;
+		}
+	}
 </style>

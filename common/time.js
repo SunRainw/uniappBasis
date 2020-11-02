@@ -45,10 +45,11 @@ export function getTime(timeStamp) {
 	const oldMonth = formatNumber(date.getMonth())
 	const oldDay = formatNumber(date.getDate())
 	const oldTime = formatInterval(date.getHours(), date.getMinutes())
-	if (Math.abs(timeDiff) < 300) {
-		// 判断间隔是否小于5分钟
-		return ""
-	} else if (timeDiff <= todaySecond) {
+	// if (Math.abs(timeDiff) < 300) {
+	// 	// 判断间隔是否小于5分钟
+	// 	return ""
+	// } else 
+	if (timeDiff <= todaySecond) {
 		// 判断是否为当天（小于当天的秒数）
 		return " " + formatInterval(date.getHours(), date.getMinutes())
 	} else if (timeDiff <= 86400 + todaySecond && timeDiff > todaySecond) {
@@ -69,9 +70,9 @@ export function getTime(timeStamp) {
 }
 
 // 判断时间间隔(数组类型)
-export function getShowTime(list, time = "time") {
+export function getShowTime(list, isChat=true, time = "time") {
 	for (let i = 0; i < list.length; i++) {
-		if (i === 0 || list[i][time] - list[i - 1][time] > 300) {
+		if (i === 0 || list[i][time] - list[i - 1][time] > 300 || !isChat) {
 			list[i].showTime = getTime(list[i][time])
 		} else {
 			list[i].showTime = ""
