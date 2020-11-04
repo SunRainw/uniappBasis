@@ -205,7 +205,49 @@
 			}
 		}
 
-	}],
+	}    ,{
+            "path" : "pages/user-setting/user-setting",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "设置"
+            }
+            
+        }
+        ,{
+            "path" : "pages/user-setting-repassword/user-setting-repassword",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "账号与安全",
+                "app-plus": {
+                    "scrollIndicator": "none"
+                }
+                
+            }
+            
+        }
+        ,{
+            "path" : "pages/user-setting-email/user-setting-email",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "绑定邮箱",
+				"app-plus": {
+				    "scrollIndicator": "none"
+				}
+            }
+            
+        }
+        ,{
+            "path" : "pages/user-setting-info/user-setting-info",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "资料编辑",
+				"app-plus": {
+				    "scrollIndicator": "none"
+				}
+            }
+            
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "糗事",

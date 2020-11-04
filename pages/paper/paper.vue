@@ -41,6 +41,7 @@
 		},
 		// 监听导航按钮点击
 		onNavigationBarButtonTap(e) {
+			console.info(e)
 			e.index === 1 ? this.handleShowPopup() : (uni.navigateTo({
 				url: "../user-list/user-list"
 			}), this.hidePopup())

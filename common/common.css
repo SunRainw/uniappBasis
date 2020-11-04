@@ -25,3 +25,27 @@
 .u-f-column {
 	flex-direction: column;
 }
+
+.user-setting-btn {
+	width: 100%;
+	margin-right: 20rpx 0;
+	background-color: #FFE933;
+	border: 0;
+	color: #333333;
+	margin-top: 80rpx;
+}
+
+uni-button[disabled].user-setting-btn {
+	background-color: #F4F4F4;
+	color: 1rpx solid #CCCCCC;
+	color: #909090;
+}
+.user-setting-wrap {
+	padding: 0 20rpx;
+}
+
+
+.common-input {
+	font-size: 30rpx;
+	border-bottom: 1rpx solid #F4F4F4;
+}
