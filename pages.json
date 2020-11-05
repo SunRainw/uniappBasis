@@ -247,6 +247,40 @@
             }
             
         }
+        ,{
+            "path" : "pages/user-setting-help/user-setting-help",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "意见反馈",
+				"app-plus": {
+				    "scrollIndicator": "none"
+				}
+            }
+            
+        }
+        ,{
+            "path" : "pages/user-setting-about/user-setting-about",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "关于糗百",
+				"app-plus": {
+				    "scrollIndicator": "none"
+				}
+            }
+            
+        }
+        ,{
+            "path" : "pages/login/login",
+            "style" :                                                                                    
+            {
+                "app-plus": {
+					"titleNView": false,
+					"bounce": "none",
+					"scrollIndicator": "none"
+				}
+             }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

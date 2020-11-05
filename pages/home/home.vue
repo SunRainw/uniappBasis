@@ -2,7 +2,11 @@
 	<view class="animate__animated animate__fadeInLeft animate__fast">
 		<!-- 登录状态 -->
 		<template v-if="!isLogin">
-			<login-info></login-info>
+			<view>
+				<view class="u-f-ajc">登录糗百，体验更多功能</view>
+				<other-login></other-login>
+				<view class="u-f-ajc" @tap="toLogin">账号密码登录<view class="icon iconfont icon-jinru"></view></view>
+			</view>
 		</template>
 		<template v-else>
 			<user-info :userInfo="userInfo" />
@@ -24,13 +28,13 @@
 <script>
 	import homeList from "@/components/home/home-list.vue"
 	import userInfo from "@/components/home/user-info.vue"
-	import loginInfo from "@/components/home/login-info.vue"
+	import otherLogin from "@/components/home/other-login.vue"
 	import homeData from "@/components/home/home-data.vue"
 	export default {
 		components: {
 			homeList,
 			userInfo,
-			loginInfo,
+			otherLogin,
 			homeData
 		},
 		data() {
@@ -58,7 +62,7 @@
 						name: "收藏"
 					}
 				],
-				isLogin: true,
+				isLogin: false,
 				list: [{
 						icon: "liulan",
 						name: "浏览历史"
@@ -80,7 +84,11 @@
 			}) : ""
 		},
 		methods: {
-
+			toLogin() {
+				uni.navigateTo({
+					url: "../../pages/login/login"
+				})
+			}
 		}
 	}
 </script>

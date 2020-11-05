@@ -32,8 +32,8 @@
 					},
 					{
 						name: "小字条",
-						linkType: "",
-						url: ""
+						linkType: "switchTab",
+						url: "/pages/paper/paper"
 					},
 					{
 						name: "清除缓存",
@@ -42,13 +42,13 @@
 					},
 					{
 						name: "意见反馈",
-						linkType: "",
-						url: ""
+						linkType: "navigateTo",
+						url: "/pages/user-setting-help/user-setting-help"
 					},
 					{
 						name: "关于糗百",
-						linkType: "",
-						url: ""
+						linkType: "navigateTo",
+						url: "/pages/user-setting-about/user-setting-about"
 					}
 				]
 			}
