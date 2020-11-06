@@ -91,3 +91,59 @@ export function getEachTime(newTime, oldTime) {
 		return ""
 	}
 }
+
+//根据日期获取星座（传入yyyy-mm-dd）
+export function getConstellationByBornDate(bornDate) {
+    const month = parseInt(bornDate.substring(5, 7));
+    const day = parseInt(bornDate.substring(8, 10));
+
+    if ((month == 1 && day >= 20) || (month == 2 && day <= 18)) {
+        return "水瓶座";
+    } else if ((month == 2 && day >= 19) || (month == 3 && day <= 20)) {
+        return "双鱼座";
+    } else if ((month == 3 && day >= 21) || (month == 4 && day <= 19)) {
+        return "白羊座";
+    } else if ((month == 4 && day >= 20) || (month == 5 && day <= 20)) {
+        return "金牛座";
+    } else if ((month == 5 && day >= 21) || (month == 6 && day <= 21)) {
+        return "双子座";
+    } else if ((month == 6 && day >= 22) || (month == 7 && day <= 22)) {
+        return "巨蟹座";
+    } else if ((month == 7 && day >= 23) || (month == 8 && day <= 22)) {
+        return "狮子座";
+    } else if ((month == 8 && day >= 23) || (month == 9 && day <= 22)) {
+        return "处女座";
+    } else if ((month == 9 && day >= 23) || (month == 10 && day <= 23)) {
+        return "天秤座";
+    } else if ((month == 10 && day >= 24) || (month == 11 && day <= 22)) {
+        return "天蝎座";
+    } else if ((month == 11 && day >= 23) || (month == 12 && day <= 21)) {
+        return "射手座";
+    } else if ((month == 12 && day >= 22) || (month == 1 && day <= 19)) {
+        return "摩羯座";
+    }
+    return;
+}
+
+//根据日期获取年龄（传入yyyy-mm-dd）
+export function getAgeByBornDate(bornDate) {
+    const myDate = new Date();
+    const month = myDate.getMonth() + 1;
+    const day = myDate.getDate();
+    const age = myDate.getFullYear() - parseInt(bornDate.substring(0, 4)) - 1;
+    if (parseInt(bornDate.substring(5, 7)) < month ||
+        parseInt(bornDate.substring(5, 7)) == month && parseInt(bornDate.substring(8, 10)) <= day) {
+        age++;
+    }
+    return age;
+}
+
+// 获取指定时间与当前时间的天数差
+export function getDayDifference (timesData) {
+    //如果时间格式是正确的，那下面这一步转化时间格式就可以不用了
+    const dateBegin = new Date(timesData.replace(/-/g, "/"));//将-转化为/，使用new Date
+    const dateEnd = new Date();//获取当前时间
+    const dateDiff = dateEnd.getTime() - dateBegin.getTime();//时间差的毫秒数
+    const dayDiff = Math.floor(dateDiff / (24 * 3600 * 1000));//计算出相差天数
+	return dayDiff
+}

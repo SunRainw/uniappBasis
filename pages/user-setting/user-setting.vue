@@ -37,7 +37,7 @@
 					},
 					{
 						name: "清除缓存",
-						linkType: "",
+						linkType: "clear",
 						url: ""
 					},
 					{

@@ -1,5 +1,5 @@
 <template>
-	<view class="home-info u-f-ac">
+	<view class="home-info u-f-ac" @tap="toUserCenter">
 		<image :src="userInfo.userPic" mode="widthFix" lazy-load></image>
 		<view class="u-f1">
 			<view class="username">{{userInfo.username}}</view>
@@ -13,6 +13,13 @@
 	export default {
 		props: {
 			userInfo: Object
+		},
+		methods: {
+			toUserCenter() {
+				uni.navigateTo({
+					url: "../../pages/user-center/user-center"
+				})
+			}
 		}
 	}
 </script>

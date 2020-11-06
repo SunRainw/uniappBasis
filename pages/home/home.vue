@@ -62,7 +62,7 @@
 						name: "收藏"
 					}
 				],
-				isLogin: false,
+				isLogin: true,
 				list: [{
 						icon: "liulan",
 						name: "浏览历史"
