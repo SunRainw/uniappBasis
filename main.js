@@ -6,8 +6,8 @@ Vue.config.productionTip = false
 import config from "./common/config.js"
 Vue.prototype.config = config
 
-// import lib from "./common/lib.js"
-// Vue.prototype.lib = lib
+import lib from "./common/lib.js"
+Vue.prototype.lib = lib
 
 App.mpType = 'app'
 

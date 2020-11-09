@@ -1,5 +1,5 @@
 <template>
-	<view class="user-chat-bottom u-f-ajc">
+	<view class="user-chat-bottom u-f-ajc animate__animated animate__fadeInDown animate__fast">
 		<input type="text" v-model="value" />
 		<view class="icon iconfont icon-fabu" @tap="submit"></view>
 	</view>

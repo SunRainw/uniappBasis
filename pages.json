@@ -116,6 +116,8 @@
 		"path": "pages/release/release",
 		"style": {
 			"app-plus": {
+				"animationType": "slide-in-bottom",
+				"animationDuration": 200,
 				"titleNView": false
 			}
 		}
@@ -135,6 +137,8 @@
 		"style": {
 			"enablePullDownRefresh": true,
 			"app-plus": {
+				"animationType": "slide-in-bottom",
+				"animationDuration": 200,
 				"scrollIndicator": "none", // 隐藏滚动条
 				"titleNView": {
 					"type": "transparent", // 渐变

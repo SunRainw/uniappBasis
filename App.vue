@@ -1,7 +1,8 @@
 <script>
 export default {
 	onLaunch: function() {
-		console.log('App Launch');
+		// 网络监听（用户目前网络状态）
+		this.lib.NetWork.On()
 	},
 	onShow: function() {
 		console.log('App Show');

@@ -1,5 +1,5 @@
 <template>
-	<view class="paper-list u-f-ac  animate__animated animate__fadeInLeft animate__fast" @tap="toUserDetail">
+	<view class="paper-list u-f-ac  animate__animated animate__fadeIn animate__fast" @tap="toUserDetail">
 		<image :src="item.userPic" mode="widthFix" lazy-load></image>
 		<view class="list-right">
 			<view class="u-f-ac u-f-jsb"><text class="username">{{item.username}}</text><text class="time">{{item.time}}</text></view>
